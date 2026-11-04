@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Assignment } from '../../data/seedData';
+import type { Assignment } from '../../data/seedData';
 import { useAssignments } from '../../context/AssignmentContext';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../common/Toast';

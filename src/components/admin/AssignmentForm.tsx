@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Assignment } from '../../data/seedData';
+import type { Assignment, User } from '../../data/seedData';
 import { useAssignments } from '../../context/AssignmentContext';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../common/Toast';
-import { validateAssignmentForm, AssignmentFormValues } from '../../utils/validation';
+import { validateAssignmentForm, type AssignmentFormValues } from '../../utils/validation';
 import { getStudents } from '../../utils/storage';
-import { User } from '../../data/seedData';
 import Button from '../common/Button';
 
 interface AssignmentFormProps {

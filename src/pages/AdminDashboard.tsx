@@ -15,7 +15,7 @@ import { useAssignments } from '../context/AssignmentContext';
 import { useToast } from '../components/common/Toast';
 import { getStudents } from '../utils/storage';
 import { isOverdue } from '../utils/dateUtils';
-import { Assignment } from '../data/seedData';
+import type { Assignment } from '../data/seedData';
 import {
   ClipboardList,
   Users,
@@ -163,14 +163,16 @@ export default function AdminDashboard() {
         />
         <StatCard
           icon={<CheckCircle size={22} />}
-          label="Total Submissions"
+          label="Submissions"
           value={stats.totalSubmissions}
+          sub="Total received"
           color="emerald"
         />
         <StatCard
           icon={<Clock size={22} />}
           label="Pending"
           value={stats.pendingTotal}
+          sub="Awaiting submission"
           color="amber"
         />
         <div className="col-span-2 lg:col-span-1 bg-white border border-gray-100 shadow-sm rounded-2xl p-5">

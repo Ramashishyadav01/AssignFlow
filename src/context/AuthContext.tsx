@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
-import { User } from '../data/seedData';
+import type { User } from '../data/seedData';
 import {
   getUsers,
   getCurrentUserId,

@@ -7,7 +7,7 @@ import EmptyState from '../components/common/EmptyState';
 import { useAuth } from '../context/AuthContext';
 import { useAssignments } from '../context/AssignmentContext';
 import { isOverdue } from '../utils/dateUtils';
-import { Assignment } from '../data/seedData';
+import type { Assignment } from '../data/seedData';
 import { Search, ClipboardX } from 'lucide-react';
 
 type Filter = 'all' | 'submitted' | 'pending' | 'overdue';

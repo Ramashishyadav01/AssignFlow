@@ -1,5 +1,5 @@
 import React from 'react';
-import { Assignment, Submission } from '../../data/seedData';
+import type { Assignment, Submission } from '../../data/seedData';
 import { isOverdue } from '../../utils/dateUtils';
 import StatCard from '../common/StatCard';
 import { ClipboardList, CheckCircle, Clock, AlertTriangle } from 'lucide-react';

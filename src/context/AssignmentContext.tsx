@@ -5,7 +5,7 @@ import React, {
   useCallback,
   ReactNode,
 } from 'react';
-import { Assignment, Submission } from '../data/seedData';
+import type { Assignment, Submission } from '../data/seedData';
 import {
   getAssignments,
   saveAssignments,

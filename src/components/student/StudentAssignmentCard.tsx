@@ -1,5 +1,5 @@
 import React from 'react';
-import { Assignment, Submission } from '../../data/seedData';
+import type { Assignment, Submission } from '../../data/seedData';
 import { formatDate, isOverdue, getDaysLeft } from '../../utils/dateUtils';
 import Badge from '../common/Badge';
 import Button from '../common/Button';

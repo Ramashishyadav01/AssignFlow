@@ -44,7 +44,7 @@ export default function Modal({ open, onClose, title, children, size = 'md' }: M
   return createPortal(
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4"
       onClick={(e) => {
         if (e.target === overlayRef.current) onClose();
       }}
@@ -52,16 +52,16 @@ export default function Modal({ open, onClose, title, children, size = 'md' }: M
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
       <div
         className={[
-          'relative bg-white rounded-2xl shadow-2xl w-full flex flex-col max-h-[90vh]',
+          'relative bg-white rounded-2xl shadow-2xl w-full flex flex-col max-h-[92vh] overflow-hidden',
           sizeClasses[size],
         ].join(' ')}
       >
         {title && (
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
-            <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
+          <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-gray-100 shrink-0 bg-white">
+            <h2 className="text-base sm:text-lg font-bold text-gray-900 truncate pr-2">{title}</h2>
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+              className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors shrink-0 cursor-pointer"
             >
               <X size={18} />
             </button>
@@ -70,7 +70,7 @@ export default function Modal({ open, onClose, title, children, size = 'md' }: M
         {!title && (
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors z-10"
+            className="absolute top-3 right-3 p-1.5 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors z-10 cursor-pointer"
           >
             <X size={18} />
           </button>
