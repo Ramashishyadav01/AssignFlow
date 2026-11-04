@@ -1,29 +1,28 @@
-import React from 'react'
-import { AppProvider, useApp } from './context/AppContext'
-import LoginPage from './components/LoginPage'
-import Navbar from './components/Navbar'
-import StudentDashboard from './components/student/StudentDashboard'
-import AdminDashboard from './components/admin/AdminDashboard'
-
-function AppShell() {
-  const { currentUser } = useApp()
-
-  if (!currentUser) {
-    return <LoginPage />
-  }
-
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      {currentUser.role === 'admin' ? <AdminDashboard /> : <StudentDashboard />}
-    </div>
-  )
-}
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import ProtectedRoute from './routes/ProtectedRoute';
+import Login from './pages/Login';
+import AdminDashboard from './pages/AdminDashboard';
+import AssignmentDetails from './pages/AssignmentDetails';
+import StudentDashboard from './pages/StudentDashboard';
+import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
-    <AppProvider>
-      <AppShell />
-    </AppProvider>
-  )
+    <Routes>
+      <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route path="/login" element={<Login />} />
+
+      <Route element={<ProtectedRoute role="admin" />}>
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/assignments/:id" element={<AssignmentDetails />} />
+      </Route>
+
+      <Route element={<ProtectedRoute role="student" />}>
+        <Route path="/student" element={<StudentDashboard />} />
+      </Route>
+
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
 }

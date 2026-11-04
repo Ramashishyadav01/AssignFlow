@@ -1,38 +1,40 @@
-export type Role = 'student' | 'admin'
+export type Role = 'admin' | 'student';
 
-export type User = {
-  id: string
-  name: string
-  email: string
-  role: Role
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: Role;
 }
 
-export type Assignment = {
-  id: string
-  title: string
-  description: string
-  dueDate: string
-  driveLink: string
-  createdBy: string      // admin user id
-  assignedTo: string[]   // 'all' sentinel or array of student ids
+export interface Assignment {
+  id: string;
+  title: string;
+  description: string;
+  dueDate: string;
+  driveLink: string;
+  createdBy: string;
+  assignedStudentIds: string[];
+  createdAt: string;
 }
 
-export type Submission = {
-  assignmentId: string
-  studentId: string
-  submitted: boolean
-  submittedAt?: string
+export interface Submission {
+  id: string;
+  assignmentId: string;
+  studentId: string;
+  status: 'submitted';
+  submittedAt: string;
 }
 
 export const SEED_USERS: User[] = [
-  { id: 'admin1', name: 'Prof. Ajit Sharma', email: 'ajit123@uni.edu', role: 'admin' },
-  { id: 'admin2', name: 'Prof. Sunil Singh', email: 'sunil@uni.edu', role: 'admin' },
-  { id: 'stu1',   name: 'Ashish Yadav',        email: 'ashish11@uni.edu', role: 'student' },
-  { id: 'stu2',   name: 'Prince Singh',           email: 'prince33@uni.edu',   role: 'student' },
-  { id: 'stu3',   name: 'Vishal Kumar',         email: 'vishal@uni.edu', role: 'student' },
-  { id: 'stu4',   name: 'Deepak Yadav',          email: 'deepak55@uni.edu', role: 'student' },
-  { id: 'stu5',   name: 'Sandeep Rai',           email: 'sandeep66@uni.edu',   role: 'student' },
-]
+  { id: 'admin1', name: 'Prof. Ajit Sharma', email: 'admin1@joineazy.com', role: 'admin' },
+  { id: 'admin2', name: 'Prof. Sunil Singh', email: 'admin2@joineazy.com', role: 'admin' },
+  { id: 'stu1', name: 'Rahul Verma', email: 'rahul@student.com', role: 'student' },
+  { id: 'stu2', name: 'Priya Sharma', email: 'priya@student.com', role: 'student' },
+  { id: 'stu3', name: 'Neha Gupta', email: 'neha@student.com', role: 'student' },
+  { id: 'stu4', name: 'Rohit Kumar', email: 'rohit@student.com', role: 'student' },
+  { id: 'stu5', name: 'Pooja Singh', email: 'pooja@student.com', role: 'student' },
+];
 
 export const SEED_ASSIGNMENTS: Assignment[] = [
   {
@@ -42,7 +44,8 @@ export const SEED_ASSIGNMENTS: Assignment[] = [
     dueDate: '2026-11-15',
     driveLink: 'https://drive.google.com/file/d/1',
     createdBy: 'admin1',
-    assignedTo: ['all'],
+    assignedStudentIds: ['all'],
+    createdAt: new Date().toISOString(),
   },
   {
     id: 'a2',
@@ -51,60 +54,23 @@ export const SEED_ASSIGNMENTS: Assignment[] = [
     dueDate: '2026-11-20',
     driveLink: 'https://drive.google.com/file/d/2',
     createdBy: 'admin1',
-    assignedTo: ['stu1', 'stu2', 'stu3'],
+    assignedStudentIds: ['stu1', 'stu2', 'stu3'],
+    createdAt: new Date().toISOString(),
   },
   {
     id: 'a3',
     title: 'Database Design Project',
-    description: 'Design a normalized relational database schema for a library management system with ER diagrams.',
+    description: 'Design a normalized relational database schema for a library management system.',
     dueDate: '2026-11-10',
     driveLink: 'https://drive.google.com/file/d/3',
     createdBy: 'admin2',
-    assignedTo: ['all'],
+    assignedStudentIds: ['all'],
+    createdAt: new Date().toISOString(),
   },
-  {
-    id: 'a4',
-    title: 'Machine Learning Lab',
-    description: 'Implement a simple neural network from scratch in Python and train it on the MNIST dataset.',
-    dueDate: '2026-11-25',
-    driveLink: 'https://drive.google.com/file/d/4',
-    createdBy: 'admin2',
-    assignedTo: ['stu4', 'stu5'],
-  },
-  {
-    id: 'a5',
-    title: 'Operating Systems Essay',
-    description: 'Compare and contrast process scheduling algorithms used in modern operating systems.',
-    dueDate: '2026-12-01',
-    driveLink: 'https://drive.google.com/file/d/5',
-    createdBy: 'admin1',
-    assignedTo: ['all'],
-  },
-]
+];
 
 export const SEED_SUBMISSIONS: Submission[] = [
-  { assignmentId: 'a1', studentId: 'stu1', submitted: true, submittedAt: '2026-11-10T10:30:00Z' },
-  { assignmentId: 'a1', studentId: 'stu2', submitted: true, submittedAt: '2026-11-11T14:00:00Z' },
-  { assignmentId: 'a1', studentId: 'stu3', submitted: false },
-  { assignmentId: 'a1', studentId: 'stu4', submitted: true, submittedAt: '2026-11-12T09:00:00Z' },
-  { assignmentId: 'a1', studentId: 'stu5', submitted: false },
-
-  { assignmentId: 'a2', studentId: 'stu1', submitted: true, submittedAt: '2026-11-13T11:00:00Z' },
-  { assignmentId: 'a2', studentId: 'stu2', submitted: false },
-  { assignmentId: 'a2', studentId: 'stu3', submitted: false },
-
-  { assignmentId: 'a3', studentId: 'stu1', submitted: false },
-  { assignmentId: 'a3', studentId: 'stu2', submitted: true, submittedAt: '2026-11-08T08:00:00Z' },
-  { assignmentId: 'a3', studentId: 'stu3', submitted: true, submittedAt: '2026-11-09T16:00:00Z' },
-  { assignmentId: 'a3', studentId: 'stu4', submitted: false },
-  { assignmentId: 'a3', studentId: 'stu5', submitted: false },
-
-  { assignmentId: 'a4', studentId: 'stu4', submitted: false },
-  { assignmentId: 'a4', studentId: 'stu5', submitted: false },
-
-  { assignmentId: 'a5', studentId: 'stu1', submitted: false },
-  { assignmentId: 'a5', studentId: 'stu2', submitted: false },
-  { assignmentId: 'a5', studentId: 'stu3', submitted: false },
-  { assignmentId: 'a5', studentId: 'stu4', submitted: false },
-  { assignmentId: 'a5', studentId: 'stu5', submitted: false },
-]
+  { id: 's1', assignmentId: 'a1', studentId: 'stu1', status: 'submitted', submittedAt: new Date().toISOString() },
+  { id: 's2', assignmentId: 'a1', studentId: 'stu2', status: 'submitted', submittedAt: new Date().toISOString() },
+  { id: 's3', assignmentId: 'a2', studentId: 'stu1', status: 'submitted', submittedAt: new Date().toISOString() },
+];
